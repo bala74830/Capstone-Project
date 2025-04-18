@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.aurionpro.entity.Users;
 
-public interface UserRespository extends JpaRepository<Users, Integer>{
+public interface UserRepository extends JpaRepository<Users, Integer>{
 
 }

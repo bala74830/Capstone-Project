@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -46,23 +45,11 @@ public class Users {
 	private boolean isblacklist;
 	
 	@Column
-	private double totalrevenue;
-	
-	@Column
 	private boolean isactive;
 	
-	@OneToMany(mappedBy = "users",cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.DETACH})
-	private List<Url> urls;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<UserPlan> userPlans;
 	
-	@OneToMany(mappedBy = "users",cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH,CascadeType.DETACH})
-	private List<Plan> plans;
 	
-	@PrePersist
-    private void init() {
-        this.isactive = true;
-        this.totalrevenue = 0;
-        this.urls=null;
-        this.plans=null;
-    }
 
 }

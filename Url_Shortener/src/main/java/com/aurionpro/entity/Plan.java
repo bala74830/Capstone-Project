@@ -1,14 +1,16 @@
 package com.aurionpro.entity;
 
+import java.util.List;
+
 import com.aurionpro.enums.Type;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,7 +38,7 @@ public class Plan {
 	private int urllimit;
 	
 	@Column
-	private int customurllimit;
+	private int customerlimit;
 	
 	@Column
 	private int clicksperurl;
@@ -47,8 +49,9 @@ public class Plan {
 	@Column
 	boolean isactive;
 	
-	@ManyToOne
-	@JoinColumn(name="id")
-	private Users users;
+	@OneToMany(mappedBy = "plan", cascade = CascadeType.ALL)
+	private List<UserPlan> userPlans;
+	
+	
 
 }

@@ -5,13 +5,13 @@ import org.springframework.stereotype.Service;
 
 import com.aurionpro.dto.PageResponse.PageResponseDto;
 import com.aurionpro.dto.User.AllUsersForAdminResponseDto;
-import com.aurionpro.repository.UserRespository;
+import com.aurionpro.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService{
 	
 	@Autowired
-	private UserRespository userRespository;
+	private UserRepository userRespository;
 
 	@Override
 	public PageResponseDto<AllUsersForAdminResponseDto> getAllUsersForAdmin(int pagenumber, int pagesize) {

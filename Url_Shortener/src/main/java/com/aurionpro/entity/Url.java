@@ -19,9 +19,13 @@ public class Url {
 	private int id;
 	
 	@Column
-	private String url;
+	private String shorturl;
 	
-	@ManyToOne
-	@JoinColumn(name="id")
-	private Users users;
+	@Column
+	private String actualurl;
+	
+	@Column
+	private boolean iscustom;
+	
+	
 }
