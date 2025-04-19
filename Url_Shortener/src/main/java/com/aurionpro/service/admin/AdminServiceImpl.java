@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.aurionpro.dto.admin.AdminRequestDto;
-import com.aurionpro.dto.admin.AdminResponseDto;
+import com.aurionpro.dto.Admin.AdminRequestDto;
+import com.aurionpro.dto.Admin.AdminResponseDto;
 import com.aurionpro.entity.Admin;
 import com.aurionpro.repository.AdminRepository;
 

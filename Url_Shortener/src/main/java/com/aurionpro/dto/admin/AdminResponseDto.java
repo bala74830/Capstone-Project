@@ -1,4 +1,4 @@
-package com.aurionpro.dto.admin;
+package com.aurionpro.dto.Admin;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

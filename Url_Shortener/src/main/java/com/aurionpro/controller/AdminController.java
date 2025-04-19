@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aurionpro.dto.admin.AdminRequestDto;
-import com.aurionpro.dto.admin.AdminResponseDto;
+import com.aurionpro.dto.Admin.AdminRequestDto;
+import com.aurionpro.dto.Admin.AdminResponseDto;
 import com.aurionpro.service.admin.AdminService;
 
 @RestController
