@@ -32,11 +32,14 @@ public class User {
 
 	@OneToMany(mappedBy = "user")
 	private List<ShortUrl> shortUrls;
-	
+
 	@OneToMany(mappedBy = "user")
 	private List<UserPlan> userPlans;
-	
+
 	@OneToMany(mappedBy = "user")
 	private List<Transaction> transactions;
+
+	@OneToMany(mappedBy = "user")
+	private List<UserQuery> queries;
 
 }
