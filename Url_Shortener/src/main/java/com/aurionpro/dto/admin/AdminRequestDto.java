@@ -1,6 +1,6 @@
-package com.aurionpro.dto.Admin;
+package com.aurionpro.dto.admin;
 
-import com.aurionpro.entity.Admin;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
