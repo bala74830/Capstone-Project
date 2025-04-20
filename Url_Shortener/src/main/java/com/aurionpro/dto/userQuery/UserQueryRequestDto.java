@@ -1,31 +1,24 @@
-package com.aurionpro.entity;
+package com.aurionpro.dto.userQuery;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import com.aurionpro.entity.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-@Entity
-@Table(name = "userquerys")
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class UserQuery {
+public class UserQueryRequestDto {
 
-	@Id
-	@GeneratedValue
-	private Long id;
-	@ManyToOne
 	private User user;
 	private String queryText;
 	private String status;
 	private String responseText;
 	private boolean resolved;
 	private LocalDateTime createdAt;
+	
+	
 }

@@ -28,7 +28,7 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public HttpStatus login(AdminRequestDto adminDto) {
-		if(adminRepository.exeistsByUsername(adminDto.getUsername()))
+		if(adminRepository.existsByUsername(adminDto.getUsername()))
 		{
 			return HttpStatus.ACCEPTED;
 		}

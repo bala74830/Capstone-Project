@@ -16,23 +16,23 @@ import com.aurionpro.dto.plan.PlanResponseDto;
 import com.aurionpro.service.plan.PlanService;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("urlapp")
 public class PlanController {
 	
 	@Autowired
 	private PlanService planService;
 	
-	@PostMapping("")
+	@PostMapping("plan")
 	public ResponseEntity<PlanResponseDto> createPlan(@RequestBody PlanRequestDto planDto){
 		return ResponseEntity.ok(planService.createPlan(planDto));
 	}
 
-	@PutMapping("")
+	@PutMapping("plan")
 	public ResponseEntity<PlanResponseDto> updatePlan(@RequestBody PlanResponseDto planDto){
 		return ResponseEntity.ok(planService.updatePlan(planDto));
 	}
 	
-	@GetMapping("")
+	@GetMapping("plan")
 	public ResponseEntity<PageResponseDto<PlanResponseDto>> viewPlan(@RequestParam int pageNumber, @RequestParam int pageSize){
 		return ResponseEntity.ok(planService.viewPlan(pageNumber,pageSize));
 	}

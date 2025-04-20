@@ -13,19 +13,19 @@ import com.aurionpro.dto.admin.AdminResponseDto;
 import com.aurionpro.service.admin.AdminService;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("urlapp/admin")
 public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
 	
-	@PostMapping
+	@PostMapping("/register")
 	public ResponseEntity<AdminResponseDto> registerAdmin(@RequestBody AdminRequestDto adminDto)
 	{
 		return ResponseEntity.ok(adminService.register(adminDto));
 	}
 	
-	@PostMapping
+	@PostMapping("/login")
 	public ResponseEntity<HttpStatus> loginAdmin(@RequestBody AdminRequestDto adminDto)
 	{
 		return ResponseEntity.ok(adminService.login(adminDto));

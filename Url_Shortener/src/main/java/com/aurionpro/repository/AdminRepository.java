@@ -6,6 +6,6 @@ import com.aurionpro.entity.Admin;
 
 public interface AdminRepository extends JpaRepository<Admin, Integer>{
 	
-	boolean exeistsByUsername(String username);
+	boolean existsByUsername(String username);
 
 }
