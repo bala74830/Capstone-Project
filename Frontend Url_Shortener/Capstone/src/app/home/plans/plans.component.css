@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background: linear-gradient(to right, #1e90ff, #00bfff); */
+    height: 100vh;
+    padding-top: 50px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .title {
+    color: white;
+    margin-bottom: 30px;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .plan-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .plan-details p {
+    margin: 6px 0;
+    font-size: 14px;
+  }
+  
+  .next-button {
+    margin-top: 20px;
+    padding: 8px 16px;
+    background-color: #008060;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .primary-button {
+    margin-top: 30px;
+    padding: 10px 24px;
+    background-color: white;
+    color: #1e90ff;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  

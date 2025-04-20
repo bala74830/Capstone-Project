@@ -1,0 +1,16 @@
+<div class="generate-container">
+    <h2>Generate Short URL</h2>
+    <div class="form-card">
+      <label>Enter Long URL:</label>
+      <input type="text" [(ngModel)]="longUrl" placeholder="Paste your long URL here" />
+  
+      <label>Select Plan:</label>
+      <select [(ngModel)]="selectedPlan">
+        <option value="">Select a Plan</option>
+        <option *ngFor="let plan of plans" [value]="plan.id">{{ plan.title }}</option>
+      </select>
+  
+      <button (click)="generateShortUrl()">Generate Short URL</button>
+    </div>
+  </div>
+  

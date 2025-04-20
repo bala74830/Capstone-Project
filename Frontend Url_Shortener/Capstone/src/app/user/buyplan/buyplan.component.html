@@ -1,0 +1,62 @@
+<div class="container">
+  <h2>Buy Plans</h2>
+
+  <!-- Tab Toggle -->
+  <div class="tabs">
+    <button [class.active]="activeTab === 'url'" (click)="activeTab = 'url'">URL Plans</button>
+    <button [class.active]="activeTab === 'click'" (click)="activeTab = 'click'">Click Plans</button>
+  </div>
+
+  <!-- Plans Display -->
+  <div class="plans">
+    <div *ngFor="let plan of (activeTab === 'url' ? urlPlans : clickPlans)" class="card">
+      <h3 class="plan-title">{{ plan.planname }}</h3>
+      <div class="plan-details">
+        <p><strong>Type:</strong> {{ plan.type }}</p>
+        <p><strong>URL Limit:</strong> {{ plan.urllimit }}</p>
+        <p><strong>Clicks Per URL:</strong> {{ plan.clicksperurl }}</p>
+        <p><strong>Custom URL Limit:</strong> {{ plan.customerlimit }}</p>
+        <p><strong>Amount:</strong> ${{ plan.price }}</p>
+      </div>
+
+      <!-- Button logic -->
+      <button
+        [disabled]="isPurchased(plan.id)"
+        [ngClass]="{
+          'select-button': !isPurchased(plan.id) && !isSelected(plan),
+          'remove-button': !isPurchased(plan.id) && isSelected(plan),
+          'purchased-button': isPurchased(plan.id)
+        }"
+        (click)="!isPurchased(plan.id) && togglePlan(plan)"
+      >
+        {{ isPurchased(plan.id) ? 'Purchased' : isSelected(plan) ? 'Remove' : 'Select' }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Total and Checkout -->
+  <div class="total">
+    <h3>Total Amount: <span class="amount">Rs {{ getTotalAmount().toFixed(2) }}</span></h3>
+  </div>
+
+  <button class="checkout-button" (click)="proceedToCheckout()" [disabled]="selectedPlans.length === 0">
+    Proceed to Checkout
+  </button>
+
+  <!-- Modal for Checkout -->
+  <div class="modal" *ngIf="showCheckout">
+    <div class="modal-content">
+      <h3>Checkout</h3>
+      <div *ngFor="let plan of selectedPlans" class="checkout-plan">
+        <span>{{ plan.planname }}</span>
+        <span class="price">₹{{ plan.price }}</span>
+      </div>
+      <div class="total">
+        <strong>Total:</strong>
+        <span class="amount">₹{{ getTotalAmount().toFixed(2) }}</span>
+      </div>
+      <button class="buy-button" (click)="buyPlans()">Buy</button>
+      <button class="close-button" (click)="closeCheckout()">Cancel</button>
+    </div>
+  </div>
+</div>

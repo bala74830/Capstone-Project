@@ -1,0 +1,15 @@
+<div class="container" *ngIf="data.length">
+  <h2 class="title">Plans</h2>
+  <div class="card">
+    <h3 class="plan-title">{{ data[currentIndex]?.planname || 'No Title' }}</h3>
+    <div class="plan-details">
+      <p><strong>Type:</strong> {{ data[currentIndex]?.type }}</p>
+      <p><strong>URL Limit:</strong> {{ data[currentIndex]?.urllimit }}</p>
+      <p><strong>Custom URL Limit:</strong> {{ data[currentIndex]?.customerlimit }}</p>
+      <p><strong>Clicks Per URL:</strong> {{ data[currentIndex]?.clicksperurl }}</p>
+      <p><strong>Amount:</strong> Rs {{ data[currentIndex]?.price }}</p>
+    </div>
+    <button class="next-button" (click)="showNextPlan()">Next</button>
+  </div>
+  <button class="primary-button">Start Shrinking Now</button>
+</div>

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,15 +10,10 @@ export class ServiceService {
   constructor(private http:HttpClient) { }
 
   private apiurl="http://localhost:8080/urlapp/plan/view"
-  private buyurl = 'http://localhost:8080/urlapp/buyplan/buy';
 
   getPlan():Observable<any>{
     return this.http.get(this.apiurl,{params:{
-      'pageNumber':0,'pageSize':10
+      'pageNumber':0,'pageSize':5
     }})
-  }
-
-  buyPlans(data: any): Observable<any> {
-    return this.http.post(this.buyurl, data, {});
   }
 }

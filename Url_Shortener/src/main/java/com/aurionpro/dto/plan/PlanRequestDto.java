@@ -17,4 +17,5 @@ public class PlanRequestDto {
 	private int customerlimit;
 	private int clicksperurl;
 	private double price;
+	private boolean isactive;
 }

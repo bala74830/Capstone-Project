@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.aurionpro.emuns.Role;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,16 +34,16 @@ public class User {
 	private boolean isblacklist;
 	private Role role;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private List<ShortUrl> shortUrls;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private List<UserPlan> userPlans;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private List<Transaction> transactions;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	private List<UserQuery> queries;
 
 }
