@@ -20,7 +20,7 @@ public class UserQuery {
 
 	@Id
 	@GeneratedValue
-	private Long id;
+	private int id;
 	@ManyToOne
 	private User user;
 	private String queryText;

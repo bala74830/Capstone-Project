@@ -2,6 +2,8 @@ package com.aurionpro.entity;
 
 import java.util.List;
 
+import com.aurionpro.emuns.Role;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,6 +31,7 @@ public class User {
 	private String password;
 	private boolean isactive;
 	private boolean isblacklist;
+	private Role role;
 
 	@OneToMany(mappedBy = "user")
 	private List<ShortUrl> shortUrls;

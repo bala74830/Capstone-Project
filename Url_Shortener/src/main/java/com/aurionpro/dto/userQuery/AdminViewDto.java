@@ -1,4 +1,7 @@
-package com.aurionpro.dto.admin;
+package com.aurionpro.dto.userQuery;
+
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -6,9 +9,11 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
-public class AdminRequestDto {
+public class AdminViewDto {
 	
+	private int id;
 	private String username;
-	private String password;
+	private String queryText;
+	private String status;
 
 }
