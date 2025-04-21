@@ -11,6 +11,8 @@ export class ServiceService {
 
   private apiurl="http://localhost:8080/urlapp/plan/view"
   private buyurl = 'http://localhost:8080/urlapp/buyplan/buy';
+  private shorturl = 'http://localhost:8080/urlapp/generateurl/short'
+  private redirecturl = "http://localhost:8080/urlapp/generateurl/"
 
   getPlan():Observable<any>{
     return this.http.get(this.apiurl,{params:{
@@ -21,4 +23,14 @@ export class ServiceService {
   buyPlans(data: any): Observable<any> {
     return this.http.post(this.buyurl, data, {});
   }
+
+  getUserPlans(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`/api/user/${userId}/plans`);
+  }
+
+  generateShortUrl(longUrl: string, planId: number): Observable<any> {
+    const payload = { longUrl, planId };
+    return this.http.post<any>('/api/shorten', payload);
+  }
+  
 }

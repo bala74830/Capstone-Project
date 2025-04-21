@@ -1,16 +1,40 @@
-<div class="generate-container">
-    <h2>Generate Short URL</h2>
-    <div class="form-card">
-      <label>Enter Long URL:</label>
-      <input type="text" [(ngModel)]="longUrl" placeholder="Paste your long URL here" />
-  
-      <label>Select Plan:</label>
-      <select [(ngModel)]="selectedPlan">
-        <option value="">Select a Plan</option>
-        <option *ngFor="let plan of plans" [value]="plan.id">{{ plan.title }}</option>
-      </select>
-  
-      <button (click)="generateShortUrl()">Generate Short URL</button>
-    </div>
+<div class="container">
+  <h2>Generate Short URL</h2>
+
+  <form (ngSubmit)="generateShortUrl()">
+    <!-- Long URL Input -->
+    <label for="longUrl">Enter Long URL:</label>
+    <input
+      type="text"
+      id="longUrl"
+      [(ngModel)]="longUrl"
+      name="longUrl"
+      required
+      placeholder="https://example.com/very/long/url"
+    />
+
+    <!-- Plan Selection -->
+    <label for="planSelect">Select Plan:</label>
+    <select
+      id="planSelect"
+      [(ngModel)]="selectedPlanId"
+      name="selectedPlanId"
+      required
+    >
+      <option *ngFor="let plan of userPlans" [value]="plan.id">
+        {{ plan.planname }} (Remaining: {{ plan.clicksperurl }})
+      </option>
+    </select>
+
+    <!-- Submit Button -->
+    <button type="submit">Generate Short URL</button>
+  </form>
+
+  <!-- Result Display -->
+  <div *ngIf="shortUrl" class="result">
+    <p>
+      Short URL:
+      <a [href]="shortUrl" target="_blank">{{ shortUrl }}</a>
+    </p>
   </div>
-  
+</div>

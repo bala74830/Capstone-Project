@@ -11,5 +11,6 @@ public class ShortUrlRequestDto {
 	
 	private String originalUrl;
     private int userId;
+    private int planid;
 
 }

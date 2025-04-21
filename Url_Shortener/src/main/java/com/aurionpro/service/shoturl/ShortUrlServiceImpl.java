@@ -1,9 +1,8 @@
 package com.aurionpro.service.shoturl;
 
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
-import java.util.Base64;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,22 +27,22 @@ public class ShortUrlServiceImpl implements ShortUrlService {
 	public ShortUrlResponseDto generateShortUrl(ShortUrlRequestDto request) {
 		User user = userRepo.findById(request.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
+		
+	
+		
+		
+		
 
+        // Check if short URL already exists for this user and original URL
         Optional<ShortUrl> existingUrl = shortUrlRepo.findByOriginalUrlAndUserId(request.getOriginalUrl(), request.getUserId());
         if (existingUrl.isPresent()) {
             return new ShortUrlResponseDto(existingUrl.get().getShortCode());
         }
 
-      
-        String combined = request.getOriginalUrl() + System.currentTimeMillis();
+        // Generate unique short code using UUID
+        String shortCode = UUID.randomUUID().toString().replace("-", "").substring(0, 8);
 
-       
-        String encoded = Base64.getUrlEncoder().withoutPadding()
-                .encodeToString(combined.getBytes(StandardCharsets.UTF_8));
-
-      
-        String shortCode = encoded.substring(0, 8);
-
+        // Save the new short URL entity
         ShortUrl shortUrl = new ShortUrl();
         shortUrl.setOriginalUrl(request.getOriginalUrl());
         shortUrl.setShortCode(shortCode);
