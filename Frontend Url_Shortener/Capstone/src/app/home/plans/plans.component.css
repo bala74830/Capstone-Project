@@ -4,12 +4,11 @@
     align-items: center;
     /* background: linear-gradient(to right, #1e90ff, #00bfff); */
     height: 100vh;
-    padding-top: 50px;
     font-family: Arial, sans-serif;
   }
   
   .title {
-    color: white;
+    color: rgb(22, 143, 173);
     margin-bottom: 30px;
   }
   

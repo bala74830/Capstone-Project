@@ -15,8 +15,8 @@
         <p><strong>Type:</strong> {{ plan.type }}</p>
         <p><strong>URL Limit:</strong> {{ plan.urllimit }}</p>
         <p><strong>Clicks Per URL:</strong> {{ plan.clicksperurl }}</p>
-        <p><strong>Custom URL Limit:</strong> {{ plan.customerlimit }}</p>
-        <p><strong>Amount:</strong> ${{ plan.price }}</p>
+        <p><strong>Custom URL Limit:</strong> {{ plan.customurllimit }}</p>
+        <p><strong>Amount:</strong> ₹{{ plan.price }}</p>
       </div>
 
       <!-- Button logic -->
@@ -36,7 +36,7 @@
 
   <!-- Total and Checkout -->
   <div class="total">
-    <h3>Total Amount: <span class="amount">Rs {{ getTotalAmount().toFixed(2) }}</span></h3>
+    <h3>Total Amount: <span class="amount">₹{{ getTotalAmount().toFixed(2) }}</span></h3>
   </div>
 
   <button class="checkout-button" (click)="proceedToCheckout()" [disabled]="selectedPlans.length === 0">

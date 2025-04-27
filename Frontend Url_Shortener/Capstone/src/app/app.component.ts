@@ -8,14 +8,14 @@ import { Router } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Capstone';
+  title = 'ShrinkIt';
   constructor(private router: Router){}
 
   goto(path: string) {
     this.router.navigate([path]);
   }
    jsonData = {
-    id: 1,
+    id: 2,
     username: "bala",
     firstname: "Bala",
     lastname: "Konar",

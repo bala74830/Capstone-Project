@@ -1,0 +1,24 @@
+<div class="container">
+    <h2>My Plans</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Sr. No</th>
+            <th>Short URL</th>
+            <th>Custom URL</th>
+            <th>Remaining Clicks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let url of urls; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ url.shorturl }}</td>
+            <td>{{ url.iscustom }}</td>
+            <td>{{ url.clicksRemaining }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

@@ -1,1 +1,40 @@
-<p>view plan admin</p>
+<div class="plans-container">
+    <h2>View All Plans</h2>
+  
+    <div class="tabs">
+      <button [class.active]="filterType === 'URL'" (click)="filterType = 'URL'">URL Plans</button>
+      <button [class.active]="filterType === 'CLICKS'" (click)="filterType = 'CLICKS'">Click Plans</button>
+    </div>
+  
+    <input type="text" [(ngModel)]="filterText" placeholder="Filter by Name" />
+  
+    <button class="download-btn" (click)="downloadCSV()">Download CSV</button>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Sr. No.</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Clicks Per URL</th>
+          <th>URL Limit</th>
+          <th>Custom URL Limit</th>
+          <th>Amount</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plan of filteredPlans; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ plan.planname }}</td>
+          <td>This is a {{ plan.type.toLowerCase() }} plan</td>
+          <td>{{ plan.clicksperurl }}</td>
+          <td>{{ plan.urllimit }}</td>
+          <td>{{ plan.customurllimit }}</td>
+          <td>{{ plan.price }}</td>
+          <td><button class="delete-btn" (click)="deletePlan(plan.id)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

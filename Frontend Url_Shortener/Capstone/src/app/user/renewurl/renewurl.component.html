@@ -1,0 +1,53 @@
+<div class="container" style="max-width: 450px; margin: 0 auto; padding: 2rem; background: #f0f8ff; border-radius: 10px;">
+    <h2 style="text-align: center; color: #004080;">Renew URL Plan</h2>
+  
+    <form (ngSubmit)="renewUrlPlan()">
+      
+      <!-- Long URL Input -->
+      <div class="mb-3">
+        <label for="shortUrl" class="form-label">Enter Long URL:</label>
+        <input
+          type="text"
+          id="shortUrl"
+          name="shortUrl"
+          class="form-control"
+          [(ngModel)]="shortUrl"
+          placeholder="Paste the Short Url here"
+          required
+        />
+      </div>
+  
+      <!-- Plan Dropdown -->
+      <div class="mb-3">
+        <label for="planSelect" class="form-label">Select Plan:</label>
+        <select
+          id="planSelect"
+          class="form-select"
+          [(ngModel)]="selectedPlanId"
+          name="selectedPlanId"
+          required
+        >
+          <option value="" disabled selected>Select a Plan</option>
+          <option *ngFor="let plan of userPlans" [value]="plan.id">
+            {{ plan.planname }} (Remaining: {{ plan.urllimit }})
+          </option>
+        </select>
+      </div>
+  
+      <!-- Renew Button -->
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary" style="background-color: #0056b3;">
+          Renew URL Plan
+        </button>
+      </div>
+    </form>
+  
+    <!-- Result Display -->
+    <div *ngIf="shortUrl" class="result mt-3">
+      <p>
+        Short URL: 
+        <a [href]="shortUrl" target="_blank">{{ shortUrl }}</a>
+      </p>
+    </div>
+  </div>
+  

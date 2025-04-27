@@ -42,4 +42,10 @@
   button:hover {
     background-color: #0052cc;
   }
+
+  /* .form-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  } */
   

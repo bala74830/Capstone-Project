@@ -1,0 +1,51 @@
+<div class="container">
+  <h2 class="text-center">My Plans</h2>
+  
+  <!-- Filter Input -->
+  <input
+    class="form-control mb-2"
+    type="text"
+    placeholder="Filter by Plan Name"
+    [(ngModel)]="filterTerm"
+    (input)="filterPlans()"
+  />
+  
+  <!-- Download CSV -->
+  <button class="btn btn-success mb-3" (click)="downloadCSV()">Download CSV</button>
+  
+  <!-- Data Table -->
+  <table class="table table-bordered text-center" *ngIf="filteredPlans.length > 0; else noData">
+    <thead>
+      <tr>
+        <th>Sr. No</th>
+        <th>Plan Name</th>
+        <th>Plan Type</th>
+        <th>Total Url</th>
+        <th>Total Custom Url</th>
+        <th>Total Clicks Per Url</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let plan of filteredPlans; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ plan.planname }}</td> <!-- Ensure the API returns this field -->
+        <td>{{ plan.type }}</td>
+        <td>{{ plan.urllimit }}</td>
+        <td>{{ plan.customurllimit }}</td>
+        <td>{{ plan.clicksperurl }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <!-- No Data Message -->
+  <ng-template #noData>
+    <p class="text-center text-muted">No plans found.</p>
+  </ng-template>
+  
+  <!-- Pagination Controls -->
+  <div class="pagination-controls text-center">
+    <button class="btn btn-light" disabled>&lt;</button>
+    <span class="mx-2">1</span>
+    <button class="btn btn-light" disabled>&gt;</button>
+  </div>
+</div>

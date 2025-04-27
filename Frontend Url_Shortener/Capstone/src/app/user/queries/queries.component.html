@@ -1,0 +1,41 @@
+<div class="container">
+    <h2>Manage Your Queries</h2>
+    <!-- <p>Submit new queries or view your existing queries from here.</p> -->
+  
+    <!-- Tabs to toggle between Add Query and My Queries -->
+    <div class="tabs">
+      <button (click)="showAddQuery = true" [class.active]="showAddQuery">Add Query</button>
+      <button (click)="showAddQuery = false" [class.active]="!showAddQuery">My Queries</button>
+    </div>
+  
+    <!-- Add New Query Form -->
+    <div *ngIf="showAddQuery" class="query-form">
+      <h3>Add New Query</h3>
+      <textarea [(ngModel)]="newQueryText" placeholder="Enter your query here"></textarea>
+      <button (click)="submitQuery()" [disabled]="!newQueryText">Submit Query</button>
+    </div>
+  
+    <!-- My Queries Table -->
+    <div *ngIf="!showAddQuery" class="queries-list">
+      <h3>Your Existing Queries</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Sr. No</th>
+            <th>Query Text</th>
+            <th>Resolved</th>
+            <th>Response Text</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let query of queries; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ query.queryText }}</td>
+            <td>{{ query.status  }}</td>
+            <td>{{ query.responseText || 'N/A' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

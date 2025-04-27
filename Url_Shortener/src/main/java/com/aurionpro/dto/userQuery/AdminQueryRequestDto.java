@@ -1,10 +1,6 @@
 package com.aurionpro.dto.userQuery;
 
-import java.time.LocalDateTime;
-
-import com.aurionpro.entity.User;
-import com.aurionpro.entity.UserQuery;
-
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +10,12 @@ import lombok.RequiredArgsConstructor;
 @Data
 public class AdminQueryRequestDto {
 	
-	private String status;
-	private String responseText;
-	private boolean resolved;
+	 @NotBlank(message = "Status must not be blank")
+	    private String status;
+
+	    @NotBlank(message = "Response text must not be blank")
+	    private String responseText;
+
+	    private boolean resolved; // No validation needed for boolean
 
 }

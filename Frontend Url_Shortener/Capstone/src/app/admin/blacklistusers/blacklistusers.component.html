@@ -1,0 +1,26 @@
+<h2>Blocked Users</h2>
+<table class="user-table">
+    <thead>
+      <tr>
+        <th>Sr. No.</th>
+        <th>Username</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Activate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>
+          <button class="activate-btn" (click)="activateUser(user.id)">
+            Activate
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

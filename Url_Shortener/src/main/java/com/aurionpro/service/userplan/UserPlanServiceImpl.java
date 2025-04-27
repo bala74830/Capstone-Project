@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.aurionpro.dto.plan.PlanResponseDto;
 import com.aurionpro.dto.userPlan.BuyPlanRequest;
+import com.aurionpro.dto.userPlan.UserPlanResponseDto;
 import com.aurionpro.entity.Plan;
 import com.aurionpro.entity.User;
 import com.aurionpro.entity.UserPlan;
@@ -34,7 +34,7 @@ public class UserPlanServiceImpl implements UserPlanService {
 	@Override
 	public HttpStatus buyPlans(BuyPlanRequest request) {
 		User user = userRepository.findById(request.getUserId())
-				.orElseThrow(() -> new RuntimeException("User not found"));
+				.orElseThrow(() -> new ApiException("User not found"));
 
 		List<UserPlan> activeUserPlans = userPlanRepository.findByUserIdAndExpiryDateAfter(user.getId(),
 				LocalDateTime.now());
@@ -48,7 +48,7 @@ public class UserPlanServiceImpl implements UserPlanService {
 				.collect(Collectors.toList());
 
 		if (plansToBuy.isEmpty()) {
-			return HttpStatus.IM_USED;
+			return null;
 		}
 
 		List<Plan> plans = planRepository.findAllById(plansToBuy);
@@ -57,10 +57,10 @@ public class UserPlanServiceImpl implements UserPlanService {
 			UserPlan userPlan = new UserPlan();
 			userPlan.setUser(user);
 			userPlan.setPlan(plan);
-			userPlan.setRemainingUrls(plan.getCustomerlimit());
+			userPlan.setRemainingUrls(plan.getUrllimit());
 			userPlan.setRemainingClicks(plan.getClicksperurl());
 			userPlan.setExpiryDate(LocalDateTime.now().plusMonths(1));
-
+			userPlan.setCustomUrlLimit(plan.getCustomurllimit());
 			userPlanRepository.save(userPlan);
 		}
 
@@ -68,20 +68,20 @@ public class UserPlanServiceImpl implements UserPlanService {
 	}
 
 	@Override
-	public List<PlanResponseDto> viewUserPlans(int userid) {
-		 User user = userRepository.findById(userid).orElseThrow(() -> new ApiException("no user found"));
+	public List<UserPlanResponseDto> viewUserPlans(int userid) {
+		    List<UserPlan> userPlans = userPlanRepository.findByUserId(userid);
+
+		    List<UserPlanResponseDto> planDtos = new ArrayList<>();
 		    
-		    List<PlanResponseDto> planDtos = new ArrayList<>();
-		    
-		    for (UserPlan userplan : user.getUserPlans()) {
-		        PlanResponseDto planDto = new PlanResponseDto();
+		    for (UserPlan userplan : userPlans) {
+		    	UserPlanResponseDto planDto = new UserPlanResponseDto();
 		        planDto.setId(userplan.getPlan().getId());
 		        planDto.setPlanname(userplan.getPlan().getPlanname());
 		        planDto.setType(userplan.getPlan().getType());
 		        planDto.setClicksperurl(userplan.getPlan().getClicksperurl());
-		        planDto.setUrllimit(userplan.getPlan().getUrllimit());
-		        planDto.setCustomerlimit(userplan.getPlan().getCustomerlimit());
+		        planDto.setUrllimit(userplan.getRemainingUrls());
 		        planDto.setPrice(userplan.getPlan().getPrice());
+		        planDto.setCustomurllimit(userplan.getPlan().getCustomurllimit());
 		        planDtos.add(planDto);
 		    }
 		    

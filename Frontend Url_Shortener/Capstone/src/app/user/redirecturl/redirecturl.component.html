@@ -1,0 +1,11 @@
+<div class="container">
+    <h2>Redirect Page</h2>
+  
+    <!-- Input for Short URL -->
+    <div class="redirect-container">
+      <label for="shortUrl">Paste the short URL here</label>
+      <input type="text" id="shortUrl" [(ngModel)]="shortUrl" placeholder="Enter short URL here" />
+      <button (click)="redirectToUrl()">Redirect</button>
+    </div>
+  </div>
+  

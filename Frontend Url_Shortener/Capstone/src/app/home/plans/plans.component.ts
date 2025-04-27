@@ -19,7 +19,7 @@ export class PlansComponent {
   getAllPlans(){
     this.planservice.getPlan().subscribe({next:(response)=>{
       this.data = response.content;
-        console.log(this.data);
+        //console.log(this.data);
     },
     error:(error)=>{
       console.error(error);

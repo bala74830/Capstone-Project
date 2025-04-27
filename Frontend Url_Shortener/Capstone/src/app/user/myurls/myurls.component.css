@@ -1,0 +1,77 @@
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+  
+  h2 {
+    color: #00a6a6;
+    margin-bottom: 20px;
+  }
+  
+  .toggle-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .toggle-buttons button {
+    padding: 8px 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    border: none;
+  }
+  
+  .toggle-buttons .active {
+    background-color: #00a6a6;
+    color: white;
+  }
+  
+  input.form-control {
+    max-width: 300px;
+    margin: 0 auto 15px;
+    display: block;
+  }
+  
+  button.btn-success {
+    margin: 0 auto 20px;
+    display: block;
+    background-color: #00c292;
+    border-color: #00c292;
+  }
+  
+  .table {
+    background-color: #f9f9f9;
+  }
+  
+  .table thead {
+    background-color: #0097a7;
+    color: white;
+  }
+  
+  .table th,
+  .table td {
+    vertical-align: middle;
+  }
+  
+  .pagination-controls {
+    margin-top: 20px;
+  }
+  
+  .pagination-controls button {
+    border-radius: 50%;
+    padding: 8px 12px;
+    margin: 0 5px;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+  }
+  
+  .pagination-controls span {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  

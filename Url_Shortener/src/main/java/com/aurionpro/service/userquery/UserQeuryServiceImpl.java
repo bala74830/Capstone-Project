@@ -16,6 +16,7 @@ import com.aurionpro.dto.user.UserResponseDto;
 import com.aurionpro.dto.userQuery.AdminQueryRequestDto;
 import com.aurionpro.dto.userQuery.AdminViewDto;
 import com.aurionpro.dto.userQuery.UserQueryRequestDto;
+import com.aurionpro.dto.userQuery.UserQueryResponseDto;
 import com.aurionpro.entity.User;
 import com.aurionpro.entity.UserQuery;
 import com.aurionpro.exception.ApiException;
@@ -36,14 +37,17 @@ public class UserQeuryServiceImpl implements UserQueryService {
 
 	@Override
 	public HttpStatus assignQuery(UserQueryRequestDto dto) {
-		UserQuery query = mapper.map(dto, UserQuery.class);
-
+		UserQuery query = new UserQuery();
+		query.setQueryText(dto.getQueryText());
 		User user = userRepository.findById(dto.getUserid()).orElseThrow(() -> new ApiException("User not found"));
+		query.setUser(user);
+
+		
 		List<UserQuery> querylist = new ArrayList<>();
 		querylist.add(query);
 		user.setQueries(querylist);
 		userRepository.save(user);
-		userQueryRepository.save(query);
+		//userQueryRepository.save(query);
 		return HttpStatus.ACCEPTED;
 	}
 
@@ -61,9 +65,9 @@ public class UserQeuryServiceImpl implements UserQueryService {
 		List<UserQuery> dbuserquery = pageuserquery.getContent();
 		List<AdminViewDto> dtoUsersquery = new ArrayList<>();
 		for (UserQuery userq : dbuserquery) {
-			if(userq.getStatus().equals("pending"))
+			if(!userq.isResolved())
 			{
-				User user = userRepository.findById(userq.getId()).orElseThrow(() -> new ApiException("User not found"));
+				User user = userRepository.findById(userq.getUser().getId()).orElseThrow(() -> new ApiException("User not found"));
 				String name = user.getUsername();
 				AdminViewDto dto = new AdminViewDto();
 				dto.setId(userq.getId());
@@ -83,6 +87,19 @@ public class UserQeuryServiceImpl implements UserQueryService {
 	public HttpStatus amdinRepsone(AdminQueryRequestDto dto,int userid) {
 		
 		return null;
+	}
+
+	@Override
+	public List<UserQueryResponseDto> getAllUserQueries(int userid) {
+		
+		User user = userRepository.findById(userid).orElseThrow(() -> new ApiException("User not found"));
+		List<UserQuery> queries = user.getQueries();
+		List<UserQueryResponseDto> list = new ArrayList<>();
+		for(UserQuery q : queries)
+		{
+			list.add(mapper.map(q, UserQueryResponseDto.class));
+		}
+		return list;
 	}
 
 }

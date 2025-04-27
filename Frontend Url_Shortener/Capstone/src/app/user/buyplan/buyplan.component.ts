@@ -31,6 +31,7 @@ constructor(private planservice: ServiceService){}
   getAllPlans(){
     this.planservice.getPlan().subscribe({
       next: (response) => {
+        console.log(response)
         this.allPlans = response.content;
         this.urlPlans = this.allPlans.filter(p => p.type === 'URL');
         this.clickPlans = this.allPlans.filter(p => p.type === 'CLICKS');
@@ -86,14 +87,15 @@ constructor(private planservice: ServiceService){}
 
     this.planservice.buyPlans(payload).subscribe({
       next: () => {
-        this.showPopup('Plans purchased successfully!');
         this.purchasedPlanIds.push(...this.selectedPlans.map(p => p.id));
         this.selectedPlans = [];
         this.showCheckout = false;
+        this.showPopup('Plans purchased successfully!');
+        alert('Plans purchased successfully!');
       },
       error: (err) => {
         console.error(err);
-        this.showPopup('Error while purchasing plans.');
+        alert(err.error.message || 'Something went wrong.');
       }
     });
   

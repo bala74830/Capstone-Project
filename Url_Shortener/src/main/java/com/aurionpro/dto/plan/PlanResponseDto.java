@@ -13,10 +13,10 @@ public class PlanResponseDto {
 	
 	private int id;
 	private String planname;
-	private Type type;
 	private int urllimit;
-	private int customerlimit;
 	private int clicksperurl;
+	private int customurllimit;
 	private double price;
+	private Type type;
 
 }

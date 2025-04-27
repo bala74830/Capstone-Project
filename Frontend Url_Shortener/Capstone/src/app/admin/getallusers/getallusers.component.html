@@ -1,0 +1,81 @@
+<div class="container">
+    <h2>All Users</h2>
+  
+    <!-- Filters Section -->
+    <div class="filters">
+      <label>Username: </label>
+      <input [(ngModel)]="usernameFilter" placeholder="Filter by Username" />
+      
+      <label>First Name: </label>
+      <input [(ngModel)]="firstNameFilter" placeholder="Filter by First Name" />
+      
+      <label>Last Name: </label>
+      <input [(ngModel)]="lastNameFilter" placeholder="Filter by Last Name" />
+  
+      <button (click)="applyFiltersAndResetPage()">Apply Filters</button>
+      <button (click)="removeFilters()">Remove Filters</button>
+    </div>
+  
+    <!-- Download CSV Button -->
+    <button (click)="downloadCSV()">Download CSV</button>
+  
+    <!-- Table for Displaying Users -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Sr. No</th>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Plans</th>
+            <th>URLs</th>
+            <th>Deactivate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of filteredUsers; let i = index">
+            <td>{{ (currentPage - 1) * rowsPerPage + i + 1 }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.firstname }}</td>
+            <td>{{ user.lastname }}</td>
+            <td><button (click)="viewPlans(i)">View Plans</button></td>
+            <td><button (click)="viewUrls(i)">View URLs</button></td>
+            <td>
+              <button (click)="toggleActivate(user)">
+                {{ user.isblacklist ? 'Activate' : 'Deactivate' }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Pagination Controls -->
+    <div class="pagination">
+      <button (click)="prevPage()" [disabled]="currentPage <= 1">&#60;</button>
+      <button *ngFor="let page of pages" (click)="goToPage(page)" [class.active]="currentPage === page">
+        {{ page }}
+      </button>
+      <button (click)="nextPage()" [disabled]="currentPage >= totalPages">&#62;</button>
+    </div>
+  
+    <!-- Rows per Page Dropdown -->
+    <div>
+      Rows per page:
+      <select [(ngModel)]="rowsPerPage" (change)="changeRowsPerPage()">
+        <option *ngFor="let option of [4, 8, 12]" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+  
+    <!-- <div *ngIf="showPlanModal" class="modal">
+        <div class="modal-content">
+          <h3>Plans for {{ selectedUserUsername }}</h3>
+          <ul>
+            <li *ngFor="let plan of selectedUserPlans">{{ plan }}</li>
+          </ul>
+          <button (click)="closeModal()">Close</button>
+        </div>
+      </div>
+    </div> -->
+  

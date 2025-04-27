@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aurionpro.dto.plan.PlanResponseDto;
 import com.aurionpro.dto.userPlan.BuyPlanRequest;
+import com.aurionpro.dto.userPlan.UserPlanResponseDto;
 import com.aurionpro.service.userplan.UserPlanService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("urlapp/buyplan")
@@ -26,12 +28,12 @@ public class UserPlanController {
     private UserPlanService userPlanService;
 	
 	@PostMapping("/buy")
-    public ResponseEntity<HttpStatus> buyPlans(@RequestBody BuyPlanRequest request) {
+    public ResponseEntity<HttpStatus> buyPlans(@Valid @RequestBody BuyPlanRequest request) {
         return ResponseEntity.ok(userPlanService.buyPlans(request));
     }
 	
 	@GetMapping("/viewplan/{userid}")
-	 public ResponseEntity<List<PlanResponseDto>> viewPlans(@PathVariable int userid) {
+	 public ResponseEntity<List<UserPlanResponseDto>> viewPlans(@PathVariable int userid) {
        return ResponseEntity.ok(userPlanService.viewUserPlans(userid));
    }
 

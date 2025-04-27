@@ -1,6 +1,17 @@
-<h1>URl app</h1>
-<button (click)="goto('home/homepage')">Home Page</button>
-<button (click)="goto('home/plans')">Plans</button>
-<button (click)="goto('home/about')">About</button>
-<button (click)="login()">Login</button>
-<router-outlet></router-outlet>
+<div class="app-container">
+    <header>
+      <h1 class="app-title">URL App</h1>
+    </header>
+    
+    <!-- Navigation buttons -->
+    <nav class="navbar">
+      <button class="nav-button" (click)="goto('home/homepage')">Home Page</button>
+      <button class="nav-button" (click)="goto('home/plans')">Plans</button>
+      <button class="nav-button" (click)="goto('home/about')">About</button>
+      <button class="login-button" (click)="goto('home/login')">Login</button>
+    </nav>
+    
+    <!-- Router outlet to load components -->
+    <router-outlet></router-outlet>
+  </div>
+  

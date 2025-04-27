@@ -1,6 +1,8 @@
 package com.aurionpro.dto.user;
 
 
+import com.aurionpro.emuns.Role;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -16,4 +18,5 @@ public class UserResponseDto {
 	private String lastname;
 	private String email;
 	private String password;
+	private Role role;
 }

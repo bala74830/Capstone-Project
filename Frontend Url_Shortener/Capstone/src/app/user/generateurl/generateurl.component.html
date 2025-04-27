@@ -1,37 +1,76 @@
-<div class="container">
-  <h2>Generate Short URL</h2>
+<div class="container" style="max-width: 450px; margin: 0 auto; padding: 2rem; background: #f0f8ff; border-radius: 10px;">
+  <h2 style="text-align: center; color: #004080;">Generate Short URL</h2>
 
-  <form (ngSubmit)="generateShortUrl()">
+  <form (ngSubmit)="customUrlEnabled ? generateCustomShortUrl() : generateShortUrl()">
+    
     <!-- Long URL Input -->
-    <label for="longUrl">Enter Long URL:</label>
-    <input
-      type="text"
-      id="longUrl"
-      [(ngModel)]="longUrl"
-      name="longUrl"
-      required
-      placeholder="https://example.com/very/long/url"
-    />
+    <div class="mb-3">
+      <label for="longUrl" class="form-label">Enter Long URL:</label>
+      <input
+        type="text"
+        id="longUrl"
+        name="longUrl"
+        class="form-control"
+        [(ngModel)]="longUrl"
+        placeholder="https://example.com/very/long/url"
+        required
+      />
+    </div>
 
-    <!-- Plan Selection -->
-    <label for="planSelect">Select Plan:</label>
-    <select
-      id="planSelect"
-      [(ngModel)]="selectedPlanId"
-      name="selectedPlanId"
-      required
-    >
-      <option *ngFor="let plan of userPlans" [value]="plan.id">
-        {{ plan.planname }} (Remaining: {{ plan.clicksperurl }})
-      </option>
-    </select>
+    
+    <div class="form-check mb-3" style="display: flex; align-items: center; gap: 8px;">
+      <label for="customUrlCheckbox" class="form-label" style="margin-bottom: 0;">Use Custom URL</label>
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="customUrlCheckbox"
+        [(ngModel)]="customUrlEnabled"
+        name="customUrlEnabled"
+      />
+    </div>
+    
+    
 
-    <!-- Submit Button -->
-    <button type="submit">Generate Short URL</button>
+    <!-- Custom URL Input -->
+    <div class="mb-3" *ngIf="customUrlEnabled">
+      <label for="customUrlInput" class="form-label">Enter Custom URL</label>
+      <input
+        type="text"
+        class="form-control"
+        id="customUrlInput"
+        name="customUrl"
+        [(ngModel)]="customUrl"
+        placeholder="your-custom-url"
+      />
+    </div>
+
+    <!-- Plan Dropdown -->
+    <div class="mb-3">
+      <label for="planSelect" class="form-label">Select Plan:</label>
+      <select
+        id="planSelect"
+        class="form-select"
+        [(ngModel)]="selectedPlanId"
+        name="selectedPlanId"
+        required
+      >
+        <option value="" disabled selected>Select a Plan</option>
+        <option *ngFor="let plan of userPlans" [value]="plan.id">
+          {{ plan.planname }} (Remaining: {{ plan.urllimit }})
+        </option>
+      </select>
+    </div>
+
+    <!-- Generate Button -->
+    <div class="d-grid">
+      <button type="submit" class="btn btn-primary" style="background-color: #0056b3;">
+        Generate Short URL
+      </button>
+    </div>
   </form>
 
   <!-- Result Display -->
-  <div *ngIf="shortUrl" class="result">
+  <div *ngIf="shortUrl" class="result mt-3">
     <p>
       Short URL:
       <a [href]="shortUrl" target="_blank">{{ shortUrl }}</a>

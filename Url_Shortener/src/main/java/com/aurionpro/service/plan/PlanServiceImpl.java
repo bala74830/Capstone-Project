@@ -35,8 +35,11 @@ public class PlanServiceImpl implements PlanService {
 
 	@Override
 	public PlanResponseDto updatePlan(PlanResponseDto planDto) {
-		Plan plan = planRepository.findById(planDto.getId()).orElseThrow(() -> new ApiException(""));
-
+		Plan plan = planRepository.findById(planDto.getId()).orElseThrow(() -> new ApiException("Plan not found"));
+		plan.setPlanname(planDto.getPlanname());
+		plan.setClicksperurl(planDto.getClicksperurl());
+		plan.setCustomurllimit(planDto.getCustomurllimit());
+		plan.setUrllimit(planDto.getUrllimit());
 		plan.setPrice(planDto.getPrice());
 		planRepository.save(plan);
 		return mapper.map(plan, PlanResponseDto.class);
@@ -56,7 +59,7 @@ public class PlanServiceImpl implements PlanService {
 		List<Plan> dbusers = pageuser.getContent();
 		List<PlanResponseDto> dtoUsers = new ArrayList<>();
 		for (Plan plan : dbusers) {
-			if (plan.isIsactive() == true) {
+			if (plan.isIsactive()) {
 				PlanResponseDto dto = mapper.map(plan, PlanResponseDto.class);
 				dtoUsers.add(dto);
 			}

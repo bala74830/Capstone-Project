@@ -1,0 +1,69 @@
+<div class="container">
+    <h2>Admin Query Responses</h2>
+  
+    <!-- Filters Section -->
+    <div class="filters">
+      <label>Username: </label>
+      <input [(ngModel)]="usernameFilter" placeholder="Filter by Username" />
+      
+      <label>First Name: </label>
+      <input [(ngModel)]="firstNameFilter" placeholder="Filter by First Name" />
+      
+      <label>Last Name: </label>
+      <input [(ngModel)]="lastNameFilter" placeholder="Filter by Last Name" />
+  
+      <button (click)="applyFiltersAndResetPage()">Apply Filters</button>
+      <button (click)="removeFilters()">Remove Filters</button>
+    </div>
+  
+    <!-- Download CSV Button -->
+    <button (click)="downloadCSV()">Download CSV</button>
+  
+    <!-- Table for Displaying Queries -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Sr. No</th>
+            <th>Username</th>
+            <th>Query</th>
+            <th>Status</th>
+            <th>Response</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let query of filteredQueries; let i = index">
+            <td>{{ (currentPage - 1) * rowsPerPage + i + 1 }}</td>
+            <td>{{ query.username }}</td>
+            <td>{{ query.queryText }}</td>
+            <td>{{ query.status }}</td>
+            <td>
+              <input [(ngModel)]="responses[query.id]" placeholder="Type your response here" />
+            </td>
+            <td>
+              <button (click)="submitResponse(query.id)">Submit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Pagination Controls -->
+    <div class="pagination">
+      <button (click)="prevPage()" [disabled]="currentPage <= 1">&#60;</button>
+      <button *ngFor="let page of pages" (click)="goToPage(page)" [class.active]="currentPage === page">
+        {{ page }}
+      </button>
+      <button (click)="nextPage()" [disabled]="currentPage >= totalPages">&#62;</button>
+    </div>
+  
+    <!-- Rows per Page Dropdown -->
+    <div>
+      Rows per page:
+      <select [(ngModel)]="rowsPerPage" (change)="changeRowsPerPage()">
+        <option *ngFor="let option of [4, 8, 12]" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+  </div>
+  

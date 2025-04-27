@@ -13,7 +13,7 @@ export class ServiceService {
 
   getPlan():Observable<any>{
     return this.http.get(this.apiurl,{params:{
-      'pageNumber':0,'pageSize':5
+      'pageNumber':0,'pageSize':7
     }})
   }
 }

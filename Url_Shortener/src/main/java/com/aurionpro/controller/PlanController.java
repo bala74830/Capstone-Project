@@ -16,6 +16,8 @@ import com.aurionpro.dto.plan.PlanRequestDto;
 import com.aurionpro.dto.plan.PlanResponseDto;
 import com.aurionpro.service.plan.PlanService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("urlapp/plan")
 @CrossOrigin(origins = "http://localhost:4200/")
@@ -25,12 +27,12 @@ public class PlanController {
 	private PlanService planService;
 	
 	@PostMapping("/create")
-	public ResponseEntity<PlanResponseDto> createPlan(@RequestBody PlanRequestDto planDto){
+	public ResponseEntity<PlanResponseDto> createPlan(@Valid @RequestBody PlanRequestDto planDto){
 		return ResponseEntity.ok(planService.createPlan(planDto));
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<PlanResponseDto> updatePlan(@RequestBody PlanResponseDto planDto){
+	public ResponseEntity<PlanResponseDto> updatePlan(@Valid @RequestBody PlanResponseDto planDto){
 		return ResponseEntity.ok(planService.updatePlan(planDto));
 	}
 	

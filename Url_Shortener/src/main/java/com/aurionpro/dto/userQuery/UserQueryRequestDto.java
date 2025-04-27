@@ -1,9 +1,8 @@
 package com.aurionpro.dto.userQuery;
 
-import java.time.LocalDateTime;
-
-import com.aurionpro.entity.User;
-
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -13,11 +12,11 @@ import lombok.RequiredArgsConstructor;
 @Data
 public class UserQueryRequestDto {
 
-	private String queryText;
-	private String status;
-	private String responseText;
-	private boolean resolved;
-	private LocalDateTime createdAt;
-	private int userid;
+	 @NotBlank(message = "Query text must not be blank")
+	    private String queryText;
+
+	    @NotNull(message = "User ID must not be null")
+	    @Min(value = 1, message = "User ID must be a valid positive number")
+	    private int userid;
 	
 }

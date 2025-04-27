@@ -1,0 +1,80 @@
+/* login.component.css */
+
+/* Container for login form */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #003366;
+  }
+  
+  /* Form group */
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  label {
+    font-size: 1rem;
+    color: #333333;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  input:focus {
+    border-color: #4e9ef1;
+    outline: none;
+  }
+  
+  /* Error message */
+  .error-message {
+    color: #ff0000;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    text-align: left;
+  }
+  
+  /* Button */
+  .login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #00b33c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background-color: #008c29;
+  }
+  
+  /* Ensure responsiveness */
+  @media (max-width: 768px) {
+    .login-container {
+      margin: 50px 20px;
+      padding: 15px;
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+  

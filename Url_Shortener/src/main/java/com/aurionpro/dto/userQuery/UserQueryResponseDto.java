@@ -13,6 +13,9 @@ import lombok.RequiredArgsConstructor;
 @Data
 public class UserQueryResponseDto {
 	
-	private HttpStatus response;
+	private int id;
+	private String queryText;
+	private String status;
+	private String responseText;
 
 }
